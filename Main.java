@@ -1,44 +1,39 @@
 import java.util.Scanner;
-
-class Circle {
-    double radius;
-
+interface Shape {
+    double calculateArea();
+}
+class Circle implements Shape {
+    private double radius;
     Circle(double radius) {
-        this.radius=radius;
+        this.radius = radius;
     }
-
-    double calculateArea() {
-        return Math.PI *radius*radius;
+    @Override
+    public double calculateArea() {
+        return Math.PI * radius * radius;
     }
 }
-
-class Square {
-    double side;
-
+class Square implements Shape {
+    private double side;
     Square(double side) {
-        this.side =side;
+        this.side = side;
     }
-
-    double calculateArea() {
-        return side*side;
+    @Override
+    public double calculateArea() {
+        return side * side;
     }
 }
-
 public class Main {
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter radius of Circle: ");
+        double radius = sc.nextDouble();
+        System.out.print("Enter side of Square: ");
+        double side = sc.nextDouble();
+        Shape s1 = new Circle(radius);
+        Shape s2 = new Square(side);
+        System.out.println("\nArea of Circle: " + s1.calculateArea());
+        System.out.println("Area of Square: " + s2.calculateArea());
 
-        Scanner sc=new Scanner(System.in);
-
-        System.out.print("Enter radius of circle: ");
-        double r = sc.nextDouble();
-
-        System.out.print("Enter side of square: ");
-        double s = sc.nextDouble();
-
-        Circle c = new Circle(r);
-        Square sq = new Square(s);
-
-        System.out.println("Area of Circle: " +c.calculateArea());
-        System.out.println("Area of Square: " +sq.calculateArea());
+        sc.close();
     }
 }
